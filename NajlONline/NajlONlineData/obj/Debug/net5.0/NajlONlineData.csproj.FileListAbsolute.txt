@@ -1,0 +1,15 @@
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\NajlONlineData.deps.json
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\NajlONlineData.runtimeconfig.json
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\NajlONlineData.runtimeconfig.dev.json
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\NajlONlineData.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\ref\NajlONlineData.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\bin\Debug\net5.0\NajlONlineData.pdb
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.csproj.AssemblyReference.cache
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.AssemblyInfoInputs.cache
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.AssemblyInfo.cs
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.csproj.CoreCompileInputs.cache
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\ref\NajlONlineData.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.pdb
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONlineData\obj\Debug\net5.0\NajlONlineData.genruntimeconfig.cache
