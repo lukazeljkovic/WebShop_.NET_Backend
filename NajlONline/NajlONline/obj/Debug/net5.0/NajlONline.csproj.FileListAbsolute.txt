@@ -70,3 +70,5 @@ C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.
 C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Proxies.dll
 C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.0\System.Linq.Dynamic.Core.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Luka\source\repos\NajlONlinePravi\NajlONline\NajlONline\bin\Debug\net5.0\Stripe.net.dll

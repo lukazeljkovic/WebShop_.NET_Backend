@@ -12,6 +12,7 @@ namespace NajlONline.Services
     {
         List<UlogaModel> GetAll(UlogaParameters ulogaParameters);
         UlogaModel GetByID(Guid id);
+        string GetByKorisnikID(Guid id);
         UlogaConfirmation Add(UlogaModel ulogaModel);
         UlogaConfirmation Update(UlogaModel ulogaModel);
         void Delete(Guid ulogaID);

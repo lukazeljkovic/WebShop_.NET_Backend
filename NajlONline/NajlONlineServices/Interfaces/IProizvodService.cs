@@ -16,6 +16,7 @@ namespace NajlONline.Services.Interfaces
         ProizvodConfirmation Update(ProizvodModel proizvodModel);
         void Delete(Guid proizvodID);
         List<ProizvodModel> GetByKorisnikID(Guid id);
+        List<ProizvodModel> GetByNOTKorisnikID(Guid id);
         void ApplySort(ref IQueryable<ProizvodModel> proizvodi, string orderByQueryString);
         void SearchByNaziv(ref IQueryable<ProizvodModel> proizvodi, string proizvodNaziv);
         void SearchByVrsta(ref IQueryable<ProizvodModel> proizvodi, string proizvodVrsta);

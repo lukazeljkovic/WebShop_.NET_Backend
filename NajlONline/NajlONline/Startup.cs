@@ -19,6 +19,7 @@ using NajlONline.Services.Interfaces;
 using NajlONlineData.DTOs.Profiles;
 using NajlONlineServices;
 using NajlONlineServices.Interfaces;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,32 +48,7 @@ namespace NajlONline
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NajlONline", Version = "v1" });
             });
 
-            /* var mapperConfig = new MapperConfiguration(mc =>
-             {
-                 mc.AddProfile(new KorisnikProfile());
-             });
-
-             IMapper mapper = mapperConfig.CreateMapper();
-             services.AddSingleton(mapper);
-            */
-
-            /* services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-             {
-                 options.TokenValidationParameters = new TokenValidationParameters
-                 {
-                     ValidateIssuer = true,
-                     ValidateAudience = true,
-                     ValidateLifetime = true,
-                     ValidateIssuerSigningKey = true,
-                     ValidIssuer = Configuration["Jwt:Issuer"],
-                     ValidAudience = Configuration["Jwt:Issuer"],
-                     IssuerSigningKey = new
-                     SymmetricSecurityKey
-                     (Encoding.UTF8.GetBytes
-                     (Configuration["Jwt:Key"]))
-                 };
-             });
-            */
+           
           
             var key = Configuration["JWT:Key"].ToString();
             services.AddAuthentication(x =>
@@ -92,6 +68,13 @@ namespace NajlONline
                 };
             });
 
+          
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+            });
+
             services.AddDbContext<DataBaseContext>();
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<IAdresaService, AdresaService>();
@@ -109,6 +92,7 @@ namespace NajlONline
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            StripeConfiguration.ApiKey = "sk_test_51L6ZWlGAfZ7v7CsZrkwMNpMl3Djn2VIHl23LDvJAP4bMR0eSs11EMhq0LenBI4NtDFRGw66rhDxgsb8aVg92AfEg00VDeFwBAr";
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -118,7 +102,9 @@ namespace NajlONline
 
             app.UseAuthentication();
 
-            
+           // app.UseCors(options => options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+
+            app.UseCors("AllowOrigin");
 
             app.UseHttpsRedirection();
 

@@ -67,10 +67,25 @@ namespace NajlONline.Controllers
 
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("{korisnickoIme}")]
+        [HttpGet("korisnickoIme/{korisnickoIme}")]
         public ActionResult<KorisnikDTO> GetKorisnikByKorisnickoIme(string korisnickoIme)
         {
             KorisnikModel korisnikModel = _korisnik.GetByKorisnickoIme(korisnickoIme);
+            if (korisnikModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<KorisnikDTO>(korisnikModel));
+        }
+
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        //[Authorize(Roles = "Admin")]
+        [HttpGet("{korisnikID}")]
+        public ActionResult<KorisnikDTO> GetKorisnikById(Guid korisnikID)
+        {
+            KorisnikModel korisnikModel = _korisnik.GetByID(korisnikID);
             if (korisnikModel == null)
             {
                 return NotFound();
@@ -158,6 +173,21 @@ namespace NajlONline.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Update error" + ex.InnerException.Message);
             }
         }
+
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("{korisnickoIme}/{lozinka}")]
+        public ActionResult<Guid> GetKorisnikIDByKorisnickoImeILozinka(string korisnickoIme, string lozinka)
+        {
+            Guid id = _korisnik.GetKorisnikIdByLozinkaIKorisnickoIme(lozinka, korisnickoIme);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(id);
+        }
+
 
         //[AllowAnonymous]
         // POST api/<MembersController>

@@ -38,7 +38,7 @@ namespace NajlONline.Controllers
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize]
+       // [Authorize]
         public ActionResult<List<SezonaDTO>> GetSezone([FromQuery] SezonaParameters parameters)
         {
             List<SezonaModel> sezone = _sezona.GetAll(parameters);

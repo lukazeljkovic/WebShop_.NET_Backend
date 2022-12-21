@@ -18,5 +18,6 @@ namespace NajlONline.Services.Interfaces
         List<KupovinaModel> GetByKorisnikID(Guid id);
         void ApplySort(ref IQueryable<KupovinaModel> kupovine, string orderByQueryString);
 
+        void UpdateUspesnaKupovina();
     }
 }

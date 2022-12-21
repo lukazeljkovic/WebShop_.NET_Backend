@@ -38,7 +38,7 @@ namespace NajlONline.Controllers
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult<List<UlogaDTO>> GetUloge([FromQuery] UlogaParameters parameters)
         {
             List<UlogaModel> uloge = _uloga.GetAll(parameters);
@@ -69,6 +69,21 @@ namespace NajlONline.Controllers
             }
 
             return Ok(_mapper.Map<UlogaDTO>(ulogaModel));
+        }
+
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        //[Authorize(Roles = "Admin")]
+        [HttpGet("korisnik/{korisnikID}")]
+        public ActionResult<UlogaDTO> GetUlogaByKorisnikId(Guid korisnikID)
+        {
+            string uloga = _uloga.GetByKorisnikID(korisnikID);
+            if (uloga == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(uloga);
         }
 
 

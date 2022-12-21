@@ -14,5 +14,7 @@ namespace NajlONlineData.DTOs.Creation
         public bool ProizvodPorucen { get; set; }
         public bool ProizvodDostavljen { get; set; }
         public int Kolicina { get; set; }
+
+        public bool UspesnaKupovina { get; set; }
     }
 }

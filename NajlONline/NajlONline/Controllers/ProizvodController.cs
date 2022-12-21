@@ -38,7 +38,7 @@ namespace NajlONline.Controllers
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public ActionResult<List<ProizvodDTO>> GetProizvodi([FromQuery] ProizvodParameters parameters)
         {
             List<ProizvodModel> proizvodi = _proizvod.GetAll(parameters);
@@ -69,7 +69,7 @@ namespace NajlONline.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{proizvodID}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult<ProizvodDTO> GetProizvodById(Guid proizvodID)
         {
             ProizvodModel proizvodModel = _proizvod.GetByID(proizvodID);
@@ -85,7 +85,7 @@ namespace NajlONline.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("korisnik/{korisnikID}")]
-        [Authorize]
+       // [Authorize]
         public ActionResult<ProizvodDTO> GetProizvodByKorisnikId(Guid korisnikID)
         {
             List<ProizvodModel> proizvodi = _proizvod.GetByKorisnikID(korisnikID);
@@ -94,23 +94,27 @@ namespace NajlONline.Controllers
                 return NoContent();
             }
 
-          /*  var metadata = new
+            return Ok(_mapper.Map<List<ProizvodDTO>>(proizvodi));
+        }
+
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("home/{korisnikID}")]
+        // [Authorize]
+        public ActionResult<ProizvodDTO> GetProizvodByNOTKorisnikId(Guid korisnikID)
+        {
+            List<ProizvodModel> proizvodi = _proizvod.GetByNOTKorisnikID(korisnikID);
+            if (proizvodi == null || proizvodi.Count == 0)
             {
-                proizvodi.TotalCount,
-                proizvodi.PageSize,
-                proizvodi.CurrentPage,
-                proizvodi.TotalPages,
-                proizvodi.HasNext,
-                proizvodi.HasPrevious
-            };
-          */
+                return NoContent();
+            }
 
             return Ok(_mapper.Map<List<ProizvodDTO>>(proizvodi));
         }
 
         [HttpPost]
         [Consumes("application/json")]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<ProizvodConfirmation> CreateProizvod([FromBody] ProizvodCreationDTO proizvod)
@@ -125,7 +129,7 @@ namespace NajlONline.Controllers
 
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.InnerException.Message);
             }
         }
 
@@ -134,7 +138,7 @@ namespace NajlONline.Controllers
         /// <response code="404">Nije pronađen proizvod za brisanje</response>
         /// <response code="500">Došlo je do greške na serveru prilikom brisanja proizvoda</response>
         [HttpDelete("{proizvodId}")]
-        [Authorize]
+        //[Authorize]
         public IActionResult DeleteProizvod(Guid proizvodID)
         {
             try
@@ -167,7 +171,7 @@ namespace NajlONline.Controllers
         /// <response code="400">Proizvod koji se ažurira nije pronađena</response>
         /// <response code="500">Došlo je do greške na serveru prilikom ažuriranja proizvoda</response>
         [HttpPut]
-        [Authorize]
+       // [Authorize]
         public ActionResult<ProizvodConfirmation> UpdateProizvod(ProizvodUpdateDTO proizvod)
         {
             try

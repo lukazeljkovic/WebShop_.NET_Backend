@@ -38,5 +38,12 @@ namespace NajlONline.Models
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("NajlONlineDB"));
            // optionsBuilder.UseLazyLoadingProxies();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<KorisnikModel>()
+         .HasIndex(u => u.KorisnickoIme)
+         .IsUnique();
+        }
     }
 }

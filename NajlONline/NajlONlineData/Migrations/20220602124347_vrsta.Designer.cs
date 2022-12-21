@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NajlONline.Models;
 
 namespace NajlONline.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220602124347_vrsta")]
+    partial class vrsta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,9 +148,6 @@ namespace NajlONline.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("ProizvodPorucen")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("UspesnaKupovina")
                         .HasColumnType("bit");
 
                     b.HasKey("KupovinaID");

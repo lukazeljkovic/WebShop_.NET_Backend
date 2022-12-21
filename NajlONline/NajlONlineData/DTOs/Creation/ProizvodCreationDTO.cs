@@ -8,7 +8,7 @@ namespace NajlONlineData.DTOs.Creation
 {
     public class ProizvodCreationDTO
     {
-        public Guid VrstaID { get; set; }
+        public Guid VrstaProizvodaID { get; set; }
         public Guid KategorijaID { get; set; }
         public Guid KorisnikID { get; set; }
         

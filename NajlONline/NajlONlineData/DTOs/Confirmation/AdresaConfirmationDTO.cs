@@ -8,7 +8,6 @@ namespace NajlONlineData.DTOs.Confirmation
 {
     public class AdresaConfirmationDTO
     {
-        public string Ulica { get; set; }
-        public string Broj { get; set; }
+        public Guid AdresaID { get; set; }
     }
 }

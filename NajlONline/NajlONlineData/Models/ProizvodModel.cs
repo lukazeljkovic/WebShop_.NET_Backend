@@ -10,8 +10,8 @@ namespace NajlONline.Models
     {
         [Key]
         public Guid ProizvodID { get; set; } = Guid.NewGuid();
-        public Guid VrstaID { get; set; }
-        public VrstaProizvodaModel Vrsta { get; set; }
+        public Guid VrstaProizvodaID { get; set; }
+        public VrstaProizvodaModel VrstaProizvoda { get; set; }
         public Guid KategorijaID { get; set; }
         public KategorijaModel Kategorija { get; set; }
         public Guid KorisnikID { get; set; }

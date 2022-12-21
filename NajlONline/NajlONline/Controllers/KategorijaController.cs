@@ -43,7 +43,7 @@ namespace NajlONline.Controllers
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize]
+        //[Authorize]
         public ActionResult<List<KategorijaDTO>> GetKategorije([FromQuery] KategorijaParameters parameters)
         {
             List<KategorijaModel> kategorije = _kategorija.GetAll(parameters);

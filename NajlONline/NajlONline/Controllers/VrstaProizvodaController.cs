@@ -39,7 +39,7 @@ namespace NajlONline.Controllers
         [HttpHead]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize]
+        //[Authorize]
         public ActionResult<List<VrstaProizvodaDTO>> GetVrsteProizvoda([FromQuery] VrstaProizvodaParameters parameters)
         {
             List<VrstaProizvodaModel> vrste = _vrstaProizvoda.GetAll(parameters);

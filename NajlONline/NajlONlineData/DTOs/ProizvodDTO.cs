@@ -11,7 +11,7 @@ namespace NajlONlineData.DTOs
     {
         public Guid ProizvodID { get; set; } 
        
-        public VrstaProizvodaModel Vrsta { get; set; }
+        public VrstaProizvodaModel VrstaProizvoda { get; set; }
         
         public KategorijaModel Kategorija { get; set; }
         

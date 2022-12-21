@@ -9,7 +9,7 @@ namespace NajlONlineData.DTOs.Update
     public class ProizvodUpdateDTO
     {
         public Guid ProizvodID { get; set; }
-        public Guid VrstaID { get; set; }
+        public Guid VrstaProizvodaID { get; set; }
         public Guid KategorijaID { get; set; }
         public Guid KorisnikID { get; set; }
         public Guid SezonaID { get; set; }

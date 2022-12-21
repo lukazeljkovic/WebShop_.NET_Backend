@@ -53,6 +53,13 @@ namespace NajlONline.Services
                                     .FirstOrDefault(kupovina => kupovina.KupovinaID == id);
         }
 
+        public void UpdateUspesnaKupovina ()
+        {
+            KupovinaModel model = _context.Kupovine.OrderByDescending(kupovina => kupovina.DatumKupovine).FirstOrDefault();
+            model.UspesnaKupovina = true;
+            Update(model);
+        }
+
         public KupovinaConfirmation Update(KupovinaModel kupovinaModel)
         {
             KupovinaModel kupovina = GetByID(kupovinaModel.KupovinaID);
@@ -64,6 +71,7 @@ namespace NajlONline.Services
             kupovina.ProizvodDostavljen = kupovinaModel.ProizvodDostavljen;
             kupovina.ProizvodID = kupovinaModel.ProizvodID;
             kupovina.ProizvodPorucen = kupovinaModel.ProizvodPorucen;
+            kupovina.UspesnaKupovina = kupovinaModel.UspesnaKupovina;
             
 
             _context.SaveChanges();

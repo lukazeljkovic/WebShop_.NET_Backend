@@ -77,7 +77,7 @@ namespace NajlONline.Controllers
         [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize(Roles = "Admin")]
+       
         public ActionResult<AdresaConfirmation> CreateAdresa([FromBody] AdresaCreationDTO adresa)
         {
             try

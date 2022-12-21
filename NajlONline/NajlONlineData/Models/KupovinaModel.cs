@@ -17,6 +17,7 @@ namespace NajlONline.Models
         public DateTime DatumKupovine { get; set; }
         public bool ProizvodPorucen { get; set; }
         public bool ProizvodDostavljen { get; set; }
+        public bool UspesnaKupovina { get; set; }
         public int Kolicina { get; set; }
 
     }

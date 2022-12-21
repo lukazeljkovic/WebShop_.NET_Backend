@@ -14,8 +14,6 @@ namespace NajlONline.Models
         public string Prezime { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
-
-        [Uniqe]
         public string KorisnickoIme { get; set; }
         public string Lozinka { get; set; }
         public Guid UlogaID { get; set; }

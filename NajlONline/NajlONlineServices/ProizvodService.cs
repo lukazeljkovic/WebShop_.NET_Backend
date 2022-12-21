@@ -41,7 +41,7 @@ namespace NajlONline.Services
         {
             return _context.Proizvodi.Include(a => a.Kategorija)
                                       .Include(a=> a.Korisnik)
-                                      .Include(a=>a.Vrsta)
+                                      .Include(a=>a.VrstaProizvoda)
                                       .Include(a=>a.Sezona)
                                       .Skip((parameters.PageNumber - 1) * parameters.PageSize)
                                     .Take(parameters.PageSize)
@@ -54,7 +54,7 @@ namespace NajlONline.Services
         {
             return _context.Proizvodi.Include(a => a.Kategorija)
                                       .Include(a => a.Korisnik)
-                                      .Include(a => a.Vrsta)
+                                      .Include(a => a.VrstaProizvoda)
                                       .Include(a => a.Sezona)
                                       .FirstOrDefault(a=>a.ProizvodID == id);
         }
@@ -71,7 +71,7 @@ namespace NajlONline.Services
             proizvod.SezonaID = proizvodModel.SezonaID;
             proizvod.TrenutnoStanje = proizvodModel.TrenutnoStanje;
             proizvod.Velicina = proizvodModel.Velicina;
-            proizvod.VrstaID = proizvodModel.VrstaID;
+            proizvod.VrstaProizvodaID = proizvodModel.VrstaProizvodaID;
             
             _context.SaveChanges();
 
@@ -85,11 +85,47 @@ namespace NajlONline.Services
 
         public List<ProizvodModel> GetByKorisnikID(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return _context.Proizvodi.Include(a => a.Kategorija)
+                                          .Include(a => a.Korisnik)
+                                          .Include(a => a.VrstaProizvoda)
+                                          .Include(a => a.Sezona)
+                                          .ToList();
+            }
+            else
+            {
+                string uloga = _context.Korisnici.Include(a => a.Uloga)
+                                          .Include(a => a.Adresa)
+                                           .FirstOrDefault(korisnik => korisnik.KorisnikID == id).Uloga.Naziv;
+
+                if (uloga == "Prodavac")
+                {
+                    return _context.Proizvodi.Include(a => a.Kategorija)
+                                              .Include(a => a.Korisnik)
+                                              .Include(a => a.VrstaProizvoda)
+                                              .Include(a => a.Sezona)
+                                              .Where(a => a.KorisnikID == id)
+                                              .ToList();
+                }
+                else
+                {
+                    return _context.Proizvodi.Include(a => a.Kategorija)
+                                          .Include(a => a.Korisnik)
+                                          .Include(a => a.VrstaProizvoda)
+                                          .Include(a => a.Sezona)
+                                          .ToList();
+                }
+            }
+        }
+
+        public List<ProizvodModel> GetByNOTKorisnikID(Guid id)
+        {
             return _context.Proizvodi.Include(a => a.Kategorija)
                                       .Include(a => a.Korisnik)
-                                      .Include(a => a.Vrsta)
+                                      .Include(a => a.VrstaProizvoda)
                                       .Include(a => a.Sezona)
-                                      .Where(a=>a.KorisnikID == id)
+                                      .Where(a => a.KorisnikID != id)
                                       .ToList();
         }
 
@@ -104,14 +140,14 @@ namespace NajlONline.Services
         {
             if (!proizvodi.Any() || string.IsNullOrWhiteSpace(proizvodVrsta))
                 return;
-            proizvodi = proizvodi.Where(o => o.Vrsta.NazivVrsteProizvoda.ToLower().Contains(proizvodVrsta.Trim().ToLower()));
+            proizvodi = proizvodi.Where(o => o.VrstaProizvoda.NazivVrsteProizvoda.ToLower().Contains(proizvodVrsta.Trim().ToLower()));
         }
 
         public void SearchByPodVrsta(ref IQueryable<ProizvodModel> proizvodi, string proizvodPodVrsta)
         {
             if (!proizvodi.Any() || string.IsNullOrWhiteSpace(proizvodPodVrsta))
                 return;
-            proizvodi = proizvodi.Where(o => o.Vrsta.NazivPodvrsteProizvoda.ToLower().Contains(proizvodPodVrsta.Trim().ToLower()));
+            proizvodi = proizvodi.Where(o => o.VrstaProizvoda.NazivPodvrsteProizvoda.ToLower().Contains(proizvodPodVrsta.Trim().ToLower()));
         }
 
         public void SearchByKategorija(ref IQueryable<ProizvodModel> proizvodi, string proizvodKategorija)

@@ -16,6 +16,7 @@ namespace NajlONline.Services
         KorisnikConfirmation Update(KorisnikModel korisnikModel);
         void Delete(Guid korisnikID);
         KorisnikModel GetByKorisnickoIme(string korisnickoIme);
+        Guid GetKorisnikIdByLozinkaIKorisnickoIme(string lozinka, string korisnickoIme);
         void ApplySort(ref IQueryable<KorisnikModel> korisnici, string orderByQueryString);
         void SearchByKorisnickoIme(ref IQueryable<KorisnikModel> korisnici, string korisnickoIme);
     }

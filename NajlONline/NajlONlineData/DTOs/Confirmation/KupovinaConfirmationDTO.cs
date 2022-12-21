@@ -10,6 +10,6 @@ namespace NajlONlineData.DTOs.Confirmation
    public class KupovinaConfirmationDTO
     {
         public DateTime DatumKupovine { get; set; }
-        public bool ProizvodPorucen { get; set; }
+        public Guid KupovinaID { get; set; }
     }
 }

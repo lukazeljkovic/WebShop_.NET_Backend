@@ -57,6 +57,8 @@ namespace NajlONline.Services
                                        .FirstOrDefault(korisnik => korisnik.KorisnickoIme == korisnickoIme);
         }
 
+
+
         public KorisnikConfirmation Update(KorisnikModel korisnikModel)
         {
             KorisnikModel korisnik = GetByID(korisnikModel.KorisnikID);
@@ -86,6 +88,11 @@ namespace NajlONline.Services
         {
             _context.Remove(_context.Korisnici.FirstOrDefault(korisnik => korisnik.KorisnikID == korisnikID));
             _context.SaveChanges();
+        }
+
+        public Guid GetKorisnikIdByLozinkaIKorisnickoIme(string korisnickoIme, string lozinka)
+        {
+            return _context.Korisnici.FirstOrDefault(korisnik => korisnik.KorisnickoIme == korisnickoIme & korisnik.Lozinka == lozinka).KorisnikID;
         }
 
         public void SearchByKorisnickoIme(ref IQueryable<KorisnikModel> korisnici, string korisnickoIme)
@@ -126,5 +133,7 @@ namespace NajlONline.Services
             }
             korisnici = korisnici.OrderBy(orderQuery);
         }
+
+        
     }
 }

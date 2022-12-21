@@ -37,10 +37,10 @@ namespace NajlONline.Controllers
 
         [HttpGet]
         [HttpHead]
-        [Authorize]
+        //[Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult<List<KupovinaDTO>> GetKupovine([FromQuery] KupovinaParameters parameters)
         {
             List<KupovinaModel> kupovine = _kupovina.GetAll(parameters);
@@ -60,7 +60,7 @@ namespace NajlONline.Controllers
 
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet("{kupovinaID}")]
         public ActionResult<KupovinaDTO> GetKupovinaById(Guid kupovinaID)
         {
@@ -78,7 +78,7 @@ namespace NajlONline.Controllers
         [Consumes("application/json")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [Authorize]
+       // [Authorize]
         public ActionResult<KupovinaConfirmation> CreateKupovina([FromBody] KupovinaCreationDTO kupovina)
         {
             try
@@ -89,9 +89,11 @@ namespace NajlONline.Controllers
                 return Created(location, _mapper.Map<KupovinaConfirmationDTO>(confirmation));
             }
 
+            
+
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Create Error " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.InnerException.Message);
             }
         }
 
@@ -100,7 +102,7 @@ namespace NajlONline.Controllers
         /// <response code="404">Nije pronađea kupovina za brisanje</response>
         /// <response code="500">Došlo je do greške na serveru prilikom brisanja kupovine</response>
         [HttpDelete("{kupovinaId}")]
-        [Authorize]
+       // [Authorize]
         public IActionResult DeleteKupovina(Guid kupovinaID)
         {
             try
@@ -133,7 +135,7 @@ namespace NajlONline.Controllers
         /// <response code="400">Kupovina koja se ažurira nije pronađena</response>
         /// <response code="500">Došlo je do greške na serveru prilikom ažuriranja kupovine</response>
         [HttpPut]
-        [Authorize]
+       // [Authorize]
         public ActionResult<KupovinaConfirmation> UpdateKupovina(KupovinaUpdateDTO kupovina)
         {
             try
@@ -157,7 +159,7 @@ namespace NajlONline.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("korisnik/{korisnikID}")]
-        [Authorize]
+        //[Authorize]
         public ActionResult<KupovinaDTO> GetKupovinaByKorisnikId(Guid korisnikID)
         {
             List<KupovinaModel> kupovine = _kupovina.GetByKorisnikID(korisnikID);

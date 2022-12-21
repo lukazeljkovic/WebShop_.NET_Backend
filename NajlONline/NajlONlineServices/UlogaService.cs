@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Dynamic.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace NajlONline.Services
 {
@@ -40,6 +41,14 @@ namespace NajlONline.Services
         public UlogaModel GetByID(Guid id)
         {
             return _context.Uloge.FirstOrDefault(uloga => uloga.UlogaID == id);
+        }
+
+        public string GetByKorisnikID(Guid id)
+        {
+            
+            KorisnikModel korisnik = _context.Korisnici.Include(a => a.Uloga)
+                .FirstOrDefault(korisnik => korisnik.KorisnikID == id);
+            return korisnik.Uloga.Naziv;
         }
 
         public UlogaConfirmation Update(UlogaModel ulogaModel)

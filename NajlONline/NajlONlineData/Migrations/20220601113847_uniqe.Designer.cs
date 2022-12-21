@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NajlONline.Models;
 
 namespace NajlONline.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220601113847_uniqe")]
+    partial class uniqe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,9 +150,6 @@ namespace NajlONline.Migrations
                     b.Property<bool>("ProizvodPorucen")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("UspesnaKupovina")
-                        .HasColumnType("bit");
-
                     b.HasKey("KupovinaID");
 
                     b.HasIndex("KorisnikID");
@@ -187,7 +186,7 @@ namespace NajlONline.Migrations
                     b.Property<string>("Velicina")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("VrstaProizvodaID")
+                    b.Property<Guid>("VrstaID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ProizvodID");
@@ -198,7 +197,7 @@ namespace NajlONline.Migrations
 
                     b.HasIndex("SezonaID");
 
-                    b.HasIndex("VrstaProizvodaID");
+                    b.HasIndex("VrstaID");
 
                     b.ToTable("Proizvodi");
                 });
@@ -320,9 +319,9 @@ namespace NajlONline.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NajlONline.Models.VrstaProizvodaModel", "VrstaProizvoda")
+                    b.HasOne("NajlONline.Models.VrstaProizvodaModel", "Vrsta")
                         .WithMany()
-                        .HasForeignKey("VrstaProizvodaID")
+                        .HasForeignKey("VrstaID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -332,7 +331,7 @@ namespace NajlONline.Migrations
 
                     b.Navigation("Sezona");
 
-                    b.Navigation("VrstaProizvoda");
+                    b.Navigation("Vrsta");
                 });
 #pragma warning restore 612, 618
         }
